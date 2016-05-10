@@ -194,8 +194,7 @@ module Haml
         self.class.merge_attrs(attributes, Hash[old.map {|k, v| [k.to_s, v]}])
       end
       self.class.merge_attrs(attributes, parse_object_ref(obj_ref)) if obj_ref
-      Compiler.build_attributes(
-        html?, @options[:attr_wrapper], @options[:attr_processor], @options[:escape_attrs], @options[:hyphenate_data_attrs], attributes)
+      Compiler.build_attributes(html?, @options, attributes)
     end
 
     # Remove the whitespace from the right side of the buffer string.

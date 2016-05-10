@@ -496,12 +496,7 @@ MESSAGE
       attrs.keys.each {|key| attrs[key.to_s] = attrs.delete(key)} unless attrs.empty?
       name, attrs = merge_name_and_attributes(name.to_s, attrs)
 
-      attributes = Haml::Compiler.build_attributes(haml_buffer.html?,
-        haml_buffer.options[:attr_wrapper],
-        haml_buffer.options[:attr_processor],
-        haml_buffer.options[:escape_attrs],
-        haml_buffer.options[:hyphenate_data_attrs],
-        attrs)
+      attributes = Haml::Compiler.build_attributes(haml_buffer.html?, haml_buffer.options, attrs)
 
       if text.nil? && block.nil? && (haml_buffer.options[:autoclose].include?(name) || flags.include?(:/))
         haml_internal_concat_raw "<#{name}#{attributes}#{' /' if haml_buffer.options[:format] == :xhtml}>"

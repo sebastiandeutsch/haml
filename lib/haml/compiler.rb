@@ -412,7 +412,12 @@ END
     end
 
     # This is a class method so it can be accessed from Buffer.
-    def self.build_attributes(is_html, attr_wrapper, attr_processor, escape_attrs, hyphenate_data_attrs, attributes = {})
+    def self.build_attributes(is_html, options, attributes = {})
+      attr_wrapper         = options[:attr_wrapper]
+      attr_processor       = options[:attr_processor]
+      escape_attrs         = options[:escape_attrs]
+      hyphenate_data_attrs = options[:hyphenate_data_attrs]
+
         # @TODO this is an absolutely ridiculous amount of arguments. At least
       # some of this needs to be moved into an instance method.
       quote_escape     = attr_wrapper == '"' ? "&#x0022;" : "&#x0027;"
@@ -512,8 +517,7 @@ END
     end
 
     def prerender_tag(name, self_close, attributes)
-      attributes_string = Compiler.build_attributes(
-        @options.html?, @options.attr_wrapper, @options.attr_processor, @options.escape_attrs, @options.hyphenate_data_attrs, attributes)
+      attributes_string = Compiler.build_attributes(@options.html?, @options, attributes)
       "<#{name}#{attributes_string}#{self_close && @options.xhtml? ? ' /' : ''}>"
     end
 
