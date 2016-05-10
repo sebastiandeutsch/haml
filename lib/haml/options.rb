@@ -6,6 +6,7 @@ module Haml
 
     @defaults = {
       :attr_wrapper         => "'",
+      :attr_processor       => nil,
       :autoclose            => %w(area base basefont br col command embed frame
                                   hr img input isindex keygen link menuitem meta
                                   param source track wbr),
@@ -56,6 +57,9 @@ module Haml
     # escaped (e.g. by replacing them with `&apos;`) if the character is an
     # apostrophe or a quotation mark.
     attr_reader :attr_wrapper
+
+    # A class that can process the attr and it's value (used for CSS Modules)
+    attr_accessor :attr_processor
 
     # A list of tag names that should be automatically self-closed if they have
     # no content. This can also contain regular expressions that match tag names

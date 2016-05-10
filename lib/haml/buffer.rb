@@ -195,7 +195,7 @@ module Haml
       end
       self.class.merge_attrs(attributes, parse_object_ref(obj_ref)) if obj_ref
       Compiler.build_attributes(
-        html?, @options[:attr_wrapper], @options[:escape_attrs], @options[:hyphenate_data_attrs], attributes)
+        html?, @options[:attr_wrapper], @options[:attr_processor], @options[:escape_attrs], @options[:hyphenate_data_attrs], attributes)
     end
 
     # Remove the whitespace from the right side of the buffer string.
