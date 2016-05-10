@@ -122,7 +122,7 @@ class EngineTest < Haml::TestCase
   end
 
   def test_attr_processor
-    assert_equal("<p foo='class'>bar</p>\n", render("%p.foo bar", attr_processor: -> (attr, value) { return value, attr } ))
+    assert_equal("<p foo='class'>bar</p>\n", render("%p.foo bar", attr_processor: -> (attr, value, options) { return value, attr } ))
   end
 
   def test_empty_render

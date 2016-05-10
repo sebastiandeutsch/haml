@@ -436,7 +436,7 @@ END
       result = attributes.collect do |attr, value|
         next if value.nil?
 
-        attr, value = attr_processor.call(attr, value) if attr_processor
+        attr, value = attr_processor.call(attr, value, options) if attr_processor
 
         value = filter_and_join(value, ' ') if attr == 'class'
         value = filter_and_join(value, '_') if attr == 'id'

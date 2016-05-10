@@ -58,11 +58,15 @@ module Haml
     # apostrophe or a quotation mark.
     attr_reader :attr_wrapper
 
-    # An object that responds to call. It will get two parameters:
-    # The attribute and the value and has to return two values.
+    # An object that responds to call. The call method will receive three
+    # parameters:
+    # attr - The attribute (e.g. class)
+    # value - The value (e.g. header)
+    # options - the haml options
+    # It has to return two values.
     # The first is the processed attribute, the second the processed value.
     # This example will swap the attribute name with it's value:
-    # `-> (attr, value) { return value, attr`
+    # `-> (attr, value, options) { return value, attr }`
     attr_accessor :attr_processor
 
     # A list of tag names that should be automatically self-closed if they have
