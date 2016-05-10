@@ -121,14 +121,8 @@ class EngineTest < Haml::TestCase
     silence_warnings{Encoding.default_internal = @old_default_internal}
   end
 
-  class AttrProcessor
-    def process(attr, value)
-      return "fooo", "baar"
-    end
-  end
-
   def test_attr_processor
-    assert_equal("<p fooo='baar'>bar</p>\n", render("%p.foo bar", attr_processor: AttrProcessor.new))
+    assert_equal("<p foo='class'>bar</p>\n", render("%p.foo bar", attr_processor: -> (attr, value) { return value, attr } ))
   end
 
   def test_empty_render

@@ -58,7 +58,11 @@ module Haml
     # apostrophe or a quotation mark.
     attr_reader :attr_wrapper
 
-    # A class that can process the attr and it's value (used for CSS Modules)
+    # An object that responds to call. It will get two parameters:
+    # The attribute and the value and has to return two values.
+    # The first is the processed attribute, the second the processed value.
+    # This example will swap the attribute name with it's value:
+    # `-> (attr, value) { return value, attr`
     attr_accessor :attr_processor
 
     # A list of tag names that should be automatically self-closed if they have
